@@ -145,7 +145,10 @@ console.log(checkWinner(scoreDolphins, scoreKoalas))
 // console.log(bills)
 // console.log(tips);
 
-// const totals2 = [bills[0] + tips[0] ] // This approach is much cleaner
+/*
+    !This approach is much cleaner
+*/
+// const totals2 = [bills[0] + tips[0] ]
 
 // const totals = [ //This is messy approach even though it works.
 //   calcTip(bills[0]) + bills[0],
@@ -155,89 +158,110 @@ console.log(checkWinner(scoreDolphins, scoreKoalas))
 
 // console.log(totals);
 // console.log(totals2)
-const date = new Date();
-// console.log(date)
-const currentYear = date.getFullYear();
-// console.log(currentYear)
+// const date = new Date();
+// // console.log(date)
+// const currentYear = date.getFullYear();
+// const birthYearsArr = [2010, 1990, 1994, 1983, 1985];
 
-// const calcAge = (birthYear) => {
-//   return currentYear - birthYear;
+// /*
+// ! bracket notation using variable concatinanted with part of key
+// */
+// // console.log(currentYear)
+
+// // const calcAge = (birthYear) => {
+// //   return currentYear - birthYear;
+// // };
+
+const nameKey = "Name";
+// const employees = [
+//   {
+//     firstName: "Tshepo",
+//     lastName: "Ramantso",
+//     birthYear: birthYearsArr[3],
+//     job: "Software Engineer",
+//     brothers: ["Dumisani", "Moagi", "Neo", "Kgomotso", "Lesego"],
+//     hasDriversLicense: false,
+//     // calcAge: (birthYear) => {
+//     //   return currentYear - birthYear
+//     // },
+//     // calcAge: function () {
+//     //   console.log(this)
+//     //   return currentYear - this.birthYear;
+//     // },
+//     calcAge: function () {
+//       /*
+//       ! age propery creation and storing the expression(could either use bracket or Dot notation to create property.)
+//       */
+//       this["age"] = currentYear - this.birthYear;
+//       return this["age"];
+//     },
+//     getSummary: function () {
+//       return `${this["first" + nameKey]} is ${this.calcAge()}-years old ${
+//         this.job
+//       } and ${
+//         this.hasDriversLicense
+//           ? "has drivers license"
+//           : "he does not have a drivers license"
+//       }`;
+//     },
+//   },
+//   {
+//     firstName: "Dumisani",
+//     lastName: "Ramantso",
+//     birthYear: birthYearsArr[1],
+//     job: "Software Engineer",
+//     brothers: ["Tshepo", "Moagi", "Neo", "Kgomotso", "Lesego"],
+//   },
+// ];
+
+// employees[0].location = "South Africa";
+// employees[1].location = "South Africa";
+// employees[1]["tweeter"] = "@sgudi001";
+// employees[1].hasDriversLicense = true;
+// employees[0]["tweeter"] = "@tshepi14c";
+// employees[1].calcAge = function () {
+//   this.age = currentYear - this.birthYear;
+//   return this.age;
 // };
+// employees.push({
+//   firstName: "Neo",
+//   lastName: "Mogotsi",
+//   birthYear: birthYearsArr[2],
+//   job: "Electrician",
+//   location: "South Africa",
+//   tweeter: "@teddy001",
+//   hasDriversLicense: true,
+//   calcAge: function () {
+//     return currentYear - this.birthYear;
+//   },
+// });
 
-const employees = [
-  {
-    firstName: "Tshepo",
-    lastName: "Ramantso",
-    birthYear: 2010,
-    job: "Software Engineer",
-    brothers: ["Dumisani", "Moagi", "Neo", "Kgomotso", "Lesego"],
-    // calcAge: (birthYear) => {
-    //   return currentYear - birthYear
-    // },
-    // calcAge: function () {
-    //   console.log(this)
-    //   return currentYear - this.birthYear;
-    // },
-    calcAge: function () {
-      this.age = currentYear - this.birthYear;
-      return this.age;
-    },
-    hasDriversLicense: true,
-  },
-  {
-    firstName: "Dumisani",
-    lastName: "Ramantso",
-    birthYear: 1990,
-    job: "Software Engineer",
-    brothers: ["Tshepo", "Moagi", "Neo", "Kgomotso", "Lesego"],
-  },
-];
+// // if(employees[0].calcAge(employees[1].birthYear) >= 18) {
+// //   console.log(`${employees[0].hasDriversLicense}, ligable to drive a vehicle`)
+// // } else {
+// //   console.log(`Underage, not legible to have drivers license`)
+// // }
 
-employees[0].location = "South Africa";
-employees[1].location = "South Africa";
-employees[1]["tweeter"] = "@sgudi001";
-employees[1].hasDriversLicense = true;
-employees[0]["tweeter"] = "@tshepi14c";
-employees[1].calcAge = function () {
-  this.age = currentYear - this.birthYear;
-  return this.age;
-};
-employees.push({
-  firstName: "Neo",
-  lastName: "Mogotsi",
-  birthYear: 1994,
-  job: "Electrician",
-  location: "South Africa",
-  tweeter: "@teddy001",
-  hasDriversLicense: true,
-});
+// // console.log(employees[0].firstName, employees[0]["calcAge"]());
+// console.log(employees[0].getSummary());
+// console.log(employees[1].firstName, employees[1].calcAge());
+// console.log(employees[2]["first" + nameKey], employees[2].calcAge());
+// // console.log(employees[0].age);
+// // console.log(employees[0].age);
 
-// if(employees[0].calcAge(employees[1].birthYear) >= 18) {
-//   console.log(`${employees[0].hasDriversLicense}, ligable to drive a vehicle`)
+// if (employees[0]["calcAge"]() >= 18) {
+//   console.log(employees[0].hasDriversLicense);
 // } else {
-//   console.log(`Underage, not legible to have drivers license`)
+//   console.log(
+//     `Still young left with, ${
+//       18 - employees[0]["calcAge"]()
+//     } years to get a drivers license `
+//   );
 // }
+// // console.log(employees[1].firstName, calcAge(employees[1].birthYear));
+// // console.log(employees[2].firstName, employees[0]["calcAge"](employees[2]["birthYear"]))
+// console.log(employees);
 
-// console.log(employees[0].firstName, employees[0]["calcAge"]());
-console.log(employees[0].firstName, employees[0]["calcAge"]());
-console.log(employees[1].firstName, employees[1].calcAge());
-console.log(employees[0].age);
-console.log(employees[0].age);
-
-if (employees[0]["calcAge"]() >= 18) {
-  console.log(employees[0].hasDriversLicense);
-} else {
-  console.log(
-    `Still young left with, ${
-      18 - employees[0]["calcAge"]()
-    } years to get a drivers license `
-  );
-}
-// console.log(employees[1].firstName, calcAge(employees[1].birthYear));
-// console.log(employees[2].firstName, employees[0]["calcAge"](employees[2]["birthYear"]))
-console.log(employees);
-
-// const nameKey = "Name"; // bracket notation using variable concatinanted with part of key
 // console.log(
 //   `${employees[1]["first" + nameKey]} ${
 //     employees[1]["last" + nameKey]
@@ -252,11 +276,17 @@ console.log(employees);
 //   } and his job title is ${employees[0].job}`
 // );
 
+/*
+  !bracket notation using expression to get the value.
+  */
 // const interestedIn = prompt('What are you interested in to know about employee 1? is it the firstName, lastName, age, job, brothers')
 
 // const employeesFunction = function () {
 //   if (employees[0][interestedIn]) {
-//     return employees[0][interestedIn]; // bracket notation using expression to get the value.
+/*
+      !bracket notation using expression to get the value.
+*/
+//     return employees[0][interestedIn];
 //   } else {
 //     return "Incorrect value";
 //   }
@@ -268,3 +298,47 @@ console.log(employees);
 // employees[1]['tweeter'] = '@sgudi001'
 
 // console.log(employees)
+
+/*
+ * Coding Challenge 3
+ */
+
+const BMIs = [
+  {
+    fullName: "Mark",
+    lastName: "Miller",
+    mass: 78,
+    height: 1.69,
+    calcBMI: function () {
+      this.BMI = Math.floor(this.mass / this.height ** 2);
+      return this.BMI;
+    },
+  },
+  {
+    fullName: "John",
+    lastName: "Smith",
+    mass: 92,
+    height: 1.95,
+  },
+];
+
+BMIs[1].calcBMI = function () {
+  this.BMI = Math.floor(this["mass"] / (this["height"] * this["height"]));
+  return this.BMI;
+};
+
+BMIs[0].calcBMI()
+BMIs[1].calcBMI()
+
+
+BMIs[0].BMI > BMIs[1].BMI
+  ? console.log(
+      `${BMIs[0]["fullName"]} ${BMIs[0].lastName} BMI (${BMIs[0].BMI}) is higher than ${
+        BMIs[1].fullName
+      } ${BMIs[1]['last' + nameKey]} (${BMIs[1].BMI})!`
+    )
+  : console.log(
+      `${BMIs[1]["fullName"]} ${BMIs[1]['last' + nameKey]} BMI (${BMIs[1].BMI}) is higher than ${
+        BMIs[0].fullName
+      } ${BMIs[0].lastName} (${BMIs[0].BMI})!`
+    );
