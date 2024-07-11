@@ -303,42 +303,153 @@ const nameKey = "Name";
  * Coding Challenge 3
  */
 
-const BMIs = [
-  {
-    fullName: "Mark",
-    lastName: "Miller",
-    mass: 78,
-    height: 1.69,
-    calcBMI: function () {
-      this.BMI = Math.floor(this.mass / this.height ** 2);
-      return this.BMI;
-    },
-  },
-  {
-    fullName: "John",
-    lastName: "Smith",
-    mass: 92,
-    height: 1.95,
-  },
-];
+// const BMIs = [
+//   {
+//     fullName: "Mark",
+//     lastName: "Miller",
+//     mass: 78,
+//     height: 1.69,
+//     calcBMI: function () {
+//       this.BMI = Math.floor(this.mass / this.height ** 2);
+//       return this.BMI;
+//     },
+//   },
+//   {
+//     fullName: "John",
+//     lastName: "Smith",
+//     mass: 92,
+//     height: 1.95,
+//   },
+// ];
 
-BMIs[1].calcBMI = function () {
-  this.BMI = Math.floor(this["mass"] / (this["height"] * this["height"]));
-  return this.BMI;
+// BMIs[1].calcBMI = function () {
+//   this.BMI = Math.floor(this["mass"] / (this["height"] * this["height"]));
+//   return this.BMI;
+// };
+
+// BMIs[0].calcBMI()
+// BMIs[1].calcBMI()
+
+// BMIs[0].BMI > BMIs[1].BMI
+//   ? console.log(
+//       `${BMIs[0]["fullName"]} ${BMIs[0].lastName} BMI (${BMIs[0].BMI}) is higher than ${
+//         BMIs[1].fullName
+//       } ${BMIs[1]['last' + nameKey]} (${BMIs[1].BMI})!`
+//     )
+//   : console.log(
+//       `${BMIs[1]["fullName"]} ${BMIs[1]['last' + nameKey]} BMI (${BMIs[1].BMI}) is higher than ${
+//         BMIs[0].fullName
+//       } ${BMIs[0].lastName} (${BMIs[0].BMI})!`
+//     );
+
+/*
+ * Loops
+ */
+
+// for(let i = 1; i <= 10; i++) {
+//   // console.log(i)
+//   // console.log(`lifting weights rep ${i} `)
+// }
+
+// const tshepo = ['Tshepo', 'Ramantso', 2024 - 1983, ['Dumi', 'Neo', 'Moagi'], true]
+// const types = []
+
+// for(let i = 0; i < tshepo.length; i++){
+//   console.log(tshepo[i])
+
+//   types.push(typeof tshepo[i])
+// }
+
+// console.log(types)
+
+// const birthYearsArr = [
+//   2010,
+//   "Tshepo",
+//   1990,
+//   1994,
+//   1983,
+//   1985,
+//   true,
+//   ["tshepo", "lebo", "dumisani"],
+// ];
+// const ages = [];
+// const date = new Date();
+// const currentYear = date.getFullYear();
+
+// for (let i = 0; i < birthYearsArr.length; i++) {
+//   /*
+//   ! Continue and Break keywords.. important but a bit confusing. I would opp for ternary expression.
+//   */
+//   // if(typeof birthYearsArr[i] !== 'number') continue //
+//   // ages.push(currentYear - birthYearsArr[i])
+//   typeof birthYearsArr[i] === "number"
+//     ? ages.push(currentYear - birthYearsArr[i])
+//     : "";
+// }
+// console.log(ages);
+// console.log(typeof birthYearsArr[0])
+
+// const birthYearsArr = [
+//   2010,
+//   "Tshepo",
+//   1990,
+//   1994,
+//   1983,
+//   1985,
+//   true,
+//   ["tshepo", "lebo", "dumisani"],
+// ];
+
+// for(let i = birthYearsArr.length - 1; i >= 0; i--){
+//   console.log(i, birthYearsArr[i])
+// }
+
+// for(let i = 1; i <= 3; i++){
+//   console.log(`------- STARTING EXERCISES ${i}`)
+
+//     for(let j = 1; j <= 5; j ++){
+//       console.log(`lifting weight repetition ${j}`)
+//     }
+// }
+
+// let i = 1
+
+// while(i <= 10){
+//   console.log(`WHILE: lifting weights repetition${i}`)
+//   i++
+// }
+
+// let dice = Math.floor(Math.random() * 6) + 1
+
+// while(dice !== 6){
+//   console.log(`You've rolled ${dice}`)
+//   dice = Math.floor(Math.random() * 6) + 1
+//   if(dice === 6) console.log('Loop ended...')
+// }
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const total = [];
+
+const calcTip = (bill) => {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 };
 
-BMIs[0].calcBMI()
-BMIs[1].calcBMI()
+for (let i = 0; i < bills.length; i++) {
+  const tip = (calcTip(bills[i]));
+  tips.push(tip)
+  total.push(bills[i] + tip);
 
+}
 
-BMIs[0].BMI > BMIs[1].BMI
-  ? console.log(
-      `${BMIs[0]["fullName"]} ${BMIs[0].lastName} BMI (${BMIs[0].BMI}) is higher than ${
-        BMIs[1].fullName
-      } ${BMIs[1]['last' + nameKey]} (${BMIs[1].BMI})!`
-    )
-  : console.log(
-      `${BMIs[1]["fullName"]} ${BMIs[1]['last' + nameKey]} BMI (${BMIs[1].BMI}) is higher than ${
-        BMIs[0].fullName
-      } ${BMIs[0].lastName} (${BMIs[0].BMI})!`
-    );
+const calcAverage = (arr) => {
+  let sum = 0
+  for(let i = 0; i < arr.length; i++){
+    sum+= arr[i]
+  }
+  return sum / arr.length
+}
+console.log(bills);
+console.log(tips);
+console.log(total);
+console.log(`Average total $${calcAverage(total)}`)
