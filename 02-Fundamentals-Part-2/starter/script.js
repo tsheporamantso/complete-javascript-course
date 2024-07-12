@@ -436,20 +436,28 @@ const calcTip = (bill) => {
 };
 
 for (let i = 0; i < bills.length; i++) {
-  const tip = (calcTip(bills[i]));
-  tips.push(tip)
+  const tip = calcTip(bills[i]);
+  tips.push(tip);
   total.push(bills[i] + tip);
-
 }
 
 const calcAverage = (arr) => {
-  let sum = 0
-  for(let i = 0; i < arr.length; i++){
-    sum+= arr[i]
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-  return sum / arr.length
-}
+  return sum / arr.length;
+};
 console.log(bills);
 console.log(tips);
 console.log(total);
-console.log(`Average total $${calcAverage(total)}`)
+console.log(`Average total $${calcAverage(total)}`);
+
+const reverse = (str) => {
+  let newStr = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr = newStr + str[i];
+  }
+  return newStr;
+};
+console.log(reverse("tshepo"));
