@@ -50,13 +50,13 @@ checkBtn.addEventListener('click', () => {
             ! When there is no input
   */
   if (!guess) {
-    displayMessage('No number!');
+    displayMessage('🤯 No number!');
 
     /*
      ! When the player wins.
      */
   } else if (guess === secreteNumber) {
-    displayMessage('Correct Number!');
+    displayMessage('🎉 Correct Number!');
     displayNumber(secreteNumber);
 
     bgColor.style.backgroundColor = '#60b347';
@@ -72,7 +72,7 @@ checkBtn.addEventListener('click', () => {
     */
   } else if (guess !== secreteNumber) {
     if (score > 1) {
-      displayMessage(guess > secreteNumber ? 'Too high!' : 'Too low');
+      displayMessage(guess > secreteNumber ? '📈 Too high!' : '📉 Too low');
       score--;
       displayScore(score);
     } else {
