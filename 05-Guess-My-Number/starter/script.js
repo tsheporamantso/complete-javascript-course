@@ -1,23 +1,36 @@
 'use strict';
 
+/*
+  ? DOM is Document Object Model and it's a structured representation of HTML documents.
+  ? It allows JavaScript to access HTML elements and styles to manipulate them. 
+*/
+
+// Setting values
 let secreteNumber = Math.floor(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
+
+// Getting HTML elements for manipulation
 const checkBtn = document.querySelector('.check');
 const againBtn = document.querySelector('.again');
+const bgColor = document.querySelector('body');
+const numberWidth = document.querySelector('.number');
+const highscore = document.querySelector('.highscore');
 
-const displayMessage = message => {
+// Refactor functions
+const displayMessage = (message) => {
   document.querySelector('.message').textContent = message;
 };
 
-const displayNumber = number => {
+const displayNumber = (number) => {
   document.querySelector('.number').textContent = number;
 };
 
-const displayScore = score => {
+const displayScore = (score) => {
   document.querySelector('.score').textContent = score;
 };
 
+// Event listerns
 againBtn.addEventListener('click', () => {
   score = 20;
   secreteNumber = Math.floor(Math.random() * 20) + 1;
@@ -34,25 +47,28 @@ checkBtn.addEventListener('click', () => {
   const guess = +document.querySelector('.guess').value;
 
   /*
-  ! When there is no input
+            ! When there is no input
   */
   if (!guess) {
     displayMessage('No number!');
+
+    /*
+     ! When the player wins.
+     */
   } else if (guess === secreteNumber) {
     displayMessage('Correct Number!');
     displayNumber(secreteNumber);
 
-    document.querySelector('body').style.backgroundColor = '#60b347';
-
-    document.querySelector('.number').style.width = '30rem';
+    bgColor.style.backgroundColor = '#60b347';
+    numberWidth.style.width = '30rem';
 
     if (score > highScore) {
       highScore = score;
-      document.querySelector('.highscore').textContent = highScore;
+      highscore.textContent = highScore;
     }
 
     /*
-        ! When guess is not correct
+           ! When guess is not correct
     */
   } else if (guess !== secreteNumber) {
     if (score > 1) {
