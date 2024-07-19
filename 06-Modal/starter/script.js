@@ -10,32 +10,30 @@ const btnsOpenModal = document.querySelectorAll('.show-modal');
     ? I have used the both alternatives to illustration purposes.
     ? classList is much more concise.   
 */
-const handleOpenModalClick = () => {
-  // modal.style.display = 'block';
+const OpenModal = () => {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
 
-const handleCloseModalClick = () => {
-  // modal.style.display = 'none';
+const CloseModal = () => {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
 };
 
 for (let i = 0; i < btnsOpenModal.length; i++) {
-  btnsOpenModal[i].addEventListener('click', handleOpenModalClick);
+  btnsOpenModal[i].addEventListener('click', OpenModal);
 }
 
-btnCloseModal.addEventListener('click', handleCloseModalClick);
-overlay.addEventListener('click', handleCloseModalClick);
+btnCloseModal.addEventListener('click', CloseModal);
+overlay.addEventListener('click', CloseModal);
 
 /*
   ? Keyboard events are called "Global events" and to listen to such events you call the entire document.
   ? Keyboard you have 1) keyup[happens when you lift finger off keyboar], 2) keydown[happens when you press down key] and keypress[Goes continuously as we keep finger on keyboard.] 
 */
-document.addEventListener('keydown', (e) => {
-  // console.log(e);
+document.addEventListener(
+  'keydown', (e) => {
   e.key === 'Escape' && !modal.classList.contains('hidden')
-    ? handleCloseModalClick()
+    ? CloseModal()
     : null;
 });
