@@ -6,7 +6,7 @@
 */
 
 // Setting values
-let secreteNumber = Math.floor(Math.random() * 20) + 1;
+let secreteNumber = Math.round(Math.random() * 20) + 1
 let score = 20;
 let highScore = 0;
 
@@ -22,7 +22,7 @@ const displayMessage = (message) => {
   document.querySelector('.message').textContent = message;
 };
 
-const displayNumber = (number) => {
+const guessNumber = (number) => {
   document.querySelector('.number').textContent = number;
 };
 
@@ -30,34 +30,23 @@ const displayScore = (score) => {
   document.querySelector('.score').textContent = score;
 };
 
+
 // Event listerns
-againBtn.addEventListener('click', () => {
-  score = 20;
-  secreteNumber = Math.floor(Math.random() * 20) + 1;
-  displayMessage('Start guessing...');
-  displayNumber('?');
-  displayScore(score);
-  document.querySelector('.guess').value = '';
-
-  document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.number').style.width = '15rem';
-});
-
 checkBtn.addEventListener('click', () => {
   const guess = +document.querySelector('.guess').value;
-
+  
   /*
-            ! When there is no input
+  ! When there is no input
   */
-  if (!guess) {
-    displayMessage('🤯 No number!');
-
-    /*
-     ! When the player wins.
-     */
-  } else if (guess === secreteNumber) {
+ if (!guess) {
+   displayMessage('🛑 No number!');
+   
+   /*
+   ! When the player wins.
+   */
+} else if (guess === secreteNumber) {
+    guessNumber(secreteNumber);
     displayMessage('🎉 Correct Number!');
-    displayNumber(secreteNumber);
 
     bgColor.style.backgroundColor = '#60b347';
     numberWidth.style.width = '30rem';
@@ -68,7 +57,7 @@ checkBtn.addEventListener('click', () => {
     }
 
     /*
-           ! When guess is not correct
+      ! When guess is not correct
     */
   } else if (guess !== secreteNumber) {
     if (score > 1) {
@@ -76,8 +65,20 @@ checkBtn.addEventListener('click', () => {
       score--;
       displayScore(score);
     } else {
-      displayMessage('You lost!');
+      displayMessage(' 🤯 You lost!');
       displayScore(0);
     }
   }
+});
+
+againBtn.addEventListener('click', () => {
+  score = 20;
+  secreteNumber = Math.round(Math.random() * 20) + 1
+  displayMessage('Start guessing...');
+  guessNumber('?');
+  displayScore(score);
+  document.querySelector('.guess').value = '';
+
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
 });

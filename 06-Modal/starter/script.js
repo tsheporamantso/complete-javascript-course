@@ -29,10 +29,11 @@ overlay.addEventListener('click', CloseModal);
 
 /*
   ? Keyboard events are called "Global events" and to listen to such events you call the entire document.
-  ? Keyboard you have 1) keyup[happens when you lift finger off keyboar], 2) keydown[happens when you press down key] and keypress[Goes continuously as we keep finger on keyboard.] 
+  ? Keyboard you have 1) keyup[happens when you lift finger off keyboar], 
+  ?2) keydown[happens when you press down key] and 
+  ?3) keypress[Goes continuously as we keep finger on keyboard.] 
 */
-document.addEventListener(
-  'keydown', (e) => {
+document.addEventListener('keydown', (e) => {
   e.key === 'Escape' && !modal.classList.contains('hidden')
     ? CloseModal()
     : null;
