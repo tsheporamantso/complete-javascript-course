@@ -206,6 +206,10 @@ nav {
   cursor: pointer;
 }
 
+.funds, .loan {
+  color: red;
+}
+
 /* OPERATIONS */
 .operation {
   border-radius: 1rem;
