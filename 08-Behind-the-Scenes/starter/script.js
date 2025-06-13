@@ -25,6 +25,8 @@ const calcAge = birthYear => {
   return age;
 };
 
+
+
 const firstName = 'Tshepo';
 calcAge(1990);
 */

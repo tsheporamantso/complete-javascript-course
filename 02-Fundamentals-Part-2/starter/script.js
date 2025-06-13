@@ -1,7 +1,17 @@
 "use strict";
+/*
+! always use strick mode when coding on vanilla JS. To pick such error below that might be a pain to fix.
+? It will also assist, not to declare variables with JS reserved words e.g const interface = "Audio" [interface is a reserved word and error will be flagged on the console]
+*/
+// let hasDriversLicense = false;
+// const passTest = true;
 
-// let hasDriversLicense = false
-// const passTest = false
+// if (passTest) {
+//   hasDriverLicense = true;
+//   console.log("I can drive👌");
+// }
+
+// const interface = "Audio";
 
 // if (!passTest) {
 //   hasDriversLicense = true
@@ -11,6 +21,20 @@
 // const firstName = (name) => {
 //  return `Hello my name is ${name}`
 // }
+
+/*
+? Functions are the fundamental building block of real world javascript application.
+? They are essential concept in the language.
+? functions are reuseable piece of code, more like a variable but for a chunk of code.
+*/
+// const logger = (name) => {
+//   const str = `Hello my name is ${name}`;
+//   return str;
+// };
+
+// console.log(logger("Tshepo"));
+// console.log(logger("Panky"));
+// console.log(logger("Dumisani"));
 
 // console.log(firstName('Tshepo'))
 // console.log(firstName('Dumisani'))
@@ -25,14 +49,47 @@
 
 // const str = parseInt('23')
 
-// /*
-// ! Arrow Function
-// */
-// const calcAge = (birthYear) => {
-//   return `You are ${2037 - birthYear} years old`
-// }
+/*
+! Function Declaration VS Expressions.
+* function declaration,  it's when you use a function keyword to declare a function eg function sum(){}
+* function expression it will be a function stored in variable eg const age = function() {}
+*/
 
-// /*
+const currentYear = new Date().getFullYear();
+
+/*
+? Function Declaration
+! FUNCTION DECLARATIONS CAN BE CALLED BEFORE THEY ARE DEFINED IN THE CODE.[HOISTING]
+*/
+//console.log(calcAge1(1983)); // I CALLED THE FUNCTION BEFORE IT WAS DECLARED.
+
+function calcAge1(birthYear) {
+  const age = `You are ${currentYear - birthYear} years old Tshepo`;
+  return age;
+}
+
+/*
+? Function Expression
+! ARROW FUNCTION IS A SPECIAL FORM OF FUNCTION EXPRESSION.
+*/
+const calcAge2 = function (birthYear) {
+  return currentYear - birthYear;
+};
+
+//console.log(`You are ${calcAge2(1990)} years old Dumi`);
+
+/*
+! Arrow Function
+? ARROW FUNCTIONS DO NOT HAVE THE 'this' KEYWORD.
+*/
+const calcAge3 = (birthYear) => {
+  const age = `You are ${currentYear - birthYear} years old Mom`;
+  return age;
+};
+
+//console.log(calcAge3(1959));
+
+/*
 //  ? Function Declaration, it can e called before function.
 // */
 // console.log(calcAge1(1991))
@@ -62,51 +119,78 @@
 // console.log(yearsUntilRetirement(2037,1980,'Jane'))
 // console.log(yearsUntilRetirement(2024,1983,'Tshepo'))
 
-// const cutPieces = (fruit) => {
-//   return fruit * 4
-// }
-
-// const fruitProcessor = (apples, oranges) => {
-//   const applePieces = cutPieces(apples)
-//   const orangePieces = cutPieces(oranges)
-//   const juice = `Juice with ${applePieces} pieces of apples and with ${orangePieces} pieces of oranges`
-//   return juice
-// }
-
-// console.log(fruitProcessor(2, 4))
-
-/*
-const calcAverage = (firstScore, secondScore, thirdScore) => {
-  const score = Math.floor((firstScore + secondScore + thirdScore) / 3)
-  return score
+function cutPieces(fruit) {
+  return fruit * 4;
 }
 
-const scoreDolphins = calcAverage(85, 54, 41)
-const scoreKoalas = calcAverage(23, 34, 27)
+function juiceProcessor(apples, oranges) {
+  const applePieces = cutPieces(apples);
+  const orangePieces = cutPieces(oranges);
+  const juice = `Your juice has ${applePieces} pieces of apples and ${orangePieces} pieces of oranges! produced with love and plenty flavour 💕😎 `;
+  return juice;
+}
+document.getElementById("heading").innerHTML = juiceProcessor(2, 4);
+// console.log(juiceProcessor(2, 4));
 
-console.log(`Dolphins average score ${scoreDolphins}`)
-console.log(`Koalas average score ${scoreKoalas}`)
+const calcAge = (birthYear) => {
+  return currentYear - birthYear;
+};
+
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const retirementAge = 65;
+  const retirement = retirementAge - calcAge(birthYear);
+  if (retirement > 0) {
+    return `${firstName} retires in ${retirement} years`;
+  } else {
+    return `${firstName} has already retired 🎉🎊🥳`;
+  }
+};
+
+// console.log(yearsUntilRetirement(1983, "Tshepo"));
+// console.log(yearsUntilRetirement(1960, "Bob"));
+
+const calcAverage1 = (score1, score2, score3) => {
+  const averageScore = (score1 + score2 + score3) / 3;
+  return averageScore;
+};
+
+// Test 1
+let avgDolphins = calcAverage1(44, 23, 71);
+let avgKoalas = calcAverage1(65, 54, 49);
 
 const checkWinner = (avgDolphins, avgKoalas) => {
   if (avgDolphins >= 2 * avgKoalas) {
-    return `Dolphins win (${ avgDolphins} vs ${avgKoalas})`
+    return `Dolphins wins 🏆 (${avgDolphins} vs. ${avgKoalas}) `;
   } else if (avgKoalas >= 2 * avgDolphins) {
-    return `Koalas win (${ avgKoalas} vs ${avgDolphins})`
+    return `Koalas win 🏆 (${avgKoalas} vs. ${avgDolphins})`;
   } else {
-    return `No winner`
+    return "No winner...❌";
   }
-}
+};
 
-console.log(checkWinner(scoreDolphins, scoreKoalas))
+// console.log(checkWinner(avgDolphins, avgKoalas));
+// console.log(checkWinner(576, 111));
+
+// Test 2
+avgDolphins = calcAverage1(85, 54, 41);
+avgKoalas = calcAverage1(23, 34, 27);
+// console.log(checkWinner(avgDolphins, avgKoalas));
+
+/*
+! Data Structures (Two most common and basic are Arrays and Objects)
+* Only primitive values are immutable but array are not primitive values therefore they can be mutated. 
+* However you cannot replace the entire array.
 */
 
-// Data Structures (Two most common and basic are arrays and Objects)
+const friends = new Array("Dumi", "Tshepo", "Moagi");
+friends.push("Neo");
+friends.unshift("Kgomotso");
+friends[0] = "Lesego";
+// console.log(friends[friends.length - 1]);
+// console.log(friends);
 
-// const friends = new Array('Dumi', 'Tshepo', 'Moagi')
-// friends.push('Neo')
-// console.log(friends)
+// const tshepo = ["Gladwin", "Ramantso", 2025 - 1983, "FullStack Dev", friends];
 
-// friends.unshift('Kgomotso')
 // console.log(friends)
 
 // friends.push('Xolani')
@@ -163,16 +247,66 @@ console.log(checkWinner(scoreDolphins, scoreKoalas))
 // const currentYear = date.getFullYear();
 // const birthYearsArr = [2010, 1990, 1994, 1983, 1985];
 
-// /*
-// ! bracket notation using variable concatinanted with part of key
-// */
+/*
+! bracket notation using variable concatenated with part of key
+* With bracket notation you can compute the property name i.e key 
+*e.g. nameKey = Name console.log(tshepo['first' + nameKey])
+*/
+
+const tshepo = {
+  firstName: "Gladwin",
+  lastName: "Ramantso",
+  birthYear: 1983,
+  job: "Ful Stack Developer",
+  calcAge: function () {
+    this.age = currentYear - this.birthYear;
+    return this.age;
+  },
+};
+const nameKey = "Name";
+
+// console.log(tshepo.calcAge());
+// console.log(tshepo["first" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What would you like to know about Tshepo? Choose between firstName, LastName, job"
+// );
+
+// if (tshepo[interestedIn]) {
+//   console.log(tshepo[interestedIn]);
+// } else {
+//   console.log("Property doesn't exist");
+// }
+
+tshepo.location = "South Africa";
+tshepo["gender"] = "Male";
+tshepo.isEmployed = true;
+tshepo.brothers = ["Dumisani", "Neo", "Moagi"];
+const strTshepo = `${tshepo["first" + nameKey]} has ${
+  tshepo.brothers.length
+} brothers and he misses ${tshepo["brothers"][0]}`;
+// console.log(tshepo);
+
+const mark = {
+  fullName: "Mark Miller",
+  height: 1.69,
+  weight: 78,
+  calcBMI: function () {
+    this.bmi = Math.floor(this.weight / this.height ** 2);
+    return this.bmi;
+  },
+};
+
+// mark.calcBMI();
+// const strMark = `${mark.fullName} BMI (${mark.bmi})`;
+// console.log(strMark);
+
 // // console.log(currentYear)
 
 // // const calcAge = (birthYear) => {
 // //   return currentYear - birthYear;
 // // };
 
-const nameKey = "Name";
 // const employees = [
 //   {
 //     firstName: "Tshepo",
@@ -344,23 +478,42 @@ const nameKey = "Name";
 
 /*
  * Loops
+? The for loop keeps running while the condition is TRUE
+* i [IT'S THE COUNTER VARIABLE]..
  */
 
-// for(let i = 1; i <= 10; i++) {
-//   // console.log(i)
-//   // console.log(`lifting weights rep ${i} `)
+for (let i = 1; i <= 10; i++) {
+  // console.log(`Lifting weights repetition ${i} 🏋🏽`);
+}
+
+const tshepo1 = [
+  "Tshepo",
+  "Ramantso",
+  2024 - 1983,
+  ["Dumi", "Neo", "Moagi"],
+  true,
+];
+// const types = [];
+
+// for (let i = 0; i < tshepo.length; i++) {
+//   console.log(tshepo[i]);
+
+for (let i = 0; i < tshepo1.length; i++) {
+  // console.log(tshepo1[i]);
+}
+
+//   types.push(typeof tshepo[i]);
 // }
 
-// const tshepo = ['Tshepo', 'Ramantso', 2024 - 1983, ['Dumi', 'Neo', 'Moagi'], true]
-// const types = []
+const years = [1983, 1990, 1965];
+const currentYear1 = new Date().getFullYear();
+const ages = [];
+for (let i = 0; i < years.length; i++) {
+  ages.push(currentYear1 - years[i]);
+}
+// console.log(ages);
 
-// for(let i = 0; i < tshepo.length; i++){
-//   console.log(tshepo[i])
-
-//   types.push(typeof tshepo[i])
-// }
-
-// console.log(types)
+// console.log(types);
 
 // const birthYearsArr = [
 //   2010,
@@ -441,6 +594,34 @@ for (let i = 0; i < bills.length; i++) {
   total.push(bills[i] + tip);
 }
 
+console.log(tips);
+console.log(total);
+
+const reverseStr = (str) => {
+  let newStr = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr += str[i];
+  }
+  return newStr;
+};
+
+for (let i = 1; i <= 3; i++) {
+  // console.log(`------ Starting Excercise ${i}`);
+  for (let j = 1; j <= 5; j++) {
+    // console.log(`Lifting weights ${j}🏋🏽‍♂️`);
+  }
+  for (let k = 1; k <= 5; k++) {
+    // console.log(`Squards ${k} 🏋🏽`);
+  }
+  for (let l = 1; l <= 5; l++) {
+    // console.log(`Dead Lifting ${l} 🏋️`);
+  }
+}
+
+// console.log(reverseStr("Matshididso"));
+// console.log(reverseStr("Dumisani"));
+// console.log(reverseStr("Tshepo"));
+
 const calcAverage = (arr) => {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -448,10 +629,10 @@ const calcAverage = (arr) => {
   }
   return sum / arr.length;
 };
-console.log(bills);
-console.log(tips);
-console.log(total);
-console.log(`Average total $${calcAverage(total)}`);
+// console.log(bills);
+// console.log(tips);
+// console.log(total);
+// console.log(`Average total $${calcAverage(total)}`);
 
 const reverse = (str) => {
   let newStr = "";
@@ -460,4 +641,4 @@ const reverse = (str) => {
   }
   return newStr;
 };
-console.log(reverse("tshepo"));
+// console.log(reverse("tshepo"));
