@@ -2,10 +2,11 @@
 
 // import getElement from '../../05-Guess-My-Number/game/getElement.js';
 
-const showModalBtns = document.querySelectorAll('.show-modal');
+const showModalBtns = [...document.querySelectorAll('.show-modal')];
 const closeModalBtn = document.querySelector('.close-modal');
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay ');
+console.log(showModalBtns);
 /*
     ? You can choose to either use CSS style or classList to either show or hide the model.
     ? I have used the both alternatives to illustration purposes.
@@ -16,7 +17,7 @@ const toggleModal = (element, classList) => {
   element.classList.toggle(classList);
 };
 
-showModalBtns.forEach((btn) => {
+showModalBtns.map((btn) => {
   btn.addEventListener('click', () => {
     toggleModal(modal, 'hidden');
     toggleModal(overlay, 'hidden');
