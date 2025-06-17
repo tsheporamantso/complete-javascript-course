@@ -27,6 +27,18 @@ closeModalBtn.addEventListener('click', () => {
   toggleModal(overlay, 'hidden');
 });
 
+overlay.addEventListener('click', () => {
+  toggleModal(modal, 'hidden');
+  toggleModal(overlay, 'hidden');
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    toggleModal(modal, 'hidden');
+    toggleModal(overlay, 'hidden');
+  }
+});
+
 /*
   ? Keyboard events are called "Global events" and to listen to such events you call the entire document.
   ? Keyboard you have 
