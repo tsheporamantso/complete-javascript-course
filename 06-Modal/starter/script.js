@@ -13,12 +13,13 @@ console.log(showModalBtns);
     ? classList is much more concise.   
 */
 
-const toggleModal = (element, classList) => {
-  element.classList.toggle(classList);
-};
+const toggleModal = (element, classList) => element.classList.toggle(classList);
 
 showModalBtns.map((btn) => {
   btn.addEventListener('click', () => {
+    // modal.classList.contains('hidden')
+    //   ? modal.classList.remove('hidden')
+    //   : modal.classList.add('hidden');
     toggleModal(modal, 'hidden');
     toggleModal(overlay, 'hidden');
   });
