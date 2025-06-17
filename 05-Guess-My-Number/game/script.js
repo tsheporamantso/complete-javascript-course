@@ -1,5 +1,5 @@
 "use strict";
-
+import getElement from "./getElement.js";
 /*
 ! DOM MANIPULATION
 ? DOM stands for Document Object Model
@@ -7,54 +7,79 @@
 * - It allows JavaScript to access HTML elements and Styles to manipulate them.
 */
 
-const checkBtn = document.querySelector(".check");
-const againBtn = document.querySelector(".again");
+const message = getElement(".message");
+const scoreEl = getElement(".score");
+const numberEl = getElement(".number");
+const guessEl = getElement(".guess");
+const checkBtn = getElement(".check");
+const againBtn = getElement(".again");
+const highScoreEl = getElement(".highscore");
 
-let secretNumber = Math.floor(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
 
-const displayMessage = (message) => {
-  return (document.querySelector(".message").textContent = message);
-};
-
 checkBtn.addEventListener("click", () => {
-  const guess = parseInt(document.querySelector(".guess").value);
-  // When there is no input
+  // *** Get input value and convert to number ***
+  const guess = +guessEl.value;
+
+  // *** Submitting empty input field ***
   if (!guess) {
-    displayMessage("⛔ No Number");
-    // When player wins the game
+    message.textContent = "⛔ No Number selected!";
+
+    // *** When the player wins ***
   } else if (guess === secretNumber) {
-    document.querySelector(".number").textContent = secretNumber;
-    displayMessage("🎉 Correct Number");
-    document.querySelector("body").style.backgroundColor = "#60b347";
-    document.querySelector(".number").style.width = "30rem";
+    message.textContent = "🎊 Correct Number!";
+    numberEl.textContent = guess;
+    document.body.style.backgroundColor = "#60b347";
+    numberEl.style.width = "30rem";
 
     if (score > highScore) {
       highScore = score;
-      document.querySelector(".highscore").textContent = highScore;
+      highScoreEl.textContent = highScore;
     }
 
-    // When guess is incorrect
+    // *** When guess is incorrect ***
   } else if (guess !== secretNumber) {
     if (score > 1) {
-      displayMessage(guess > secretNumber ? "📈Too High!" : "📉Too Low!");
+      message.textContent =
+        guess > secretNumber ? "📈 Too high!" : "📉 Too Low";
       score--;
-      document.querySelector(".score").textContent = score;
+      scoreEl.textContent = score;
     } else {
-      displayMessage("💥You lost the game");
-      document.querySelector(".score").textContent = 0;
+      message.textContent = "🤯 You lost the game!";
+      scoreEl.textContent = 0;
     }
   }
 });
 
 againBtn.addEventListener("click", () => {
   score = 20;
-  secretNumber = Math.floor(Math.random() * 20) + 1;
-  document.querySelector("body").style.backgroundColor = "#222";
-  document.querySelector(".number").style.width = "15rem";
-  document.querySelector(".number").textContent = "?";
-  document.querySelector(".score").textContent = score;
-  document.querySelector(".guess").value = "";
-  displayMessage("Start guessing...");
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  // highScoreEl.textContent = 0;
+  scoreEl.textContent = score;
+  message.textContent = "Start guessing...";
+  document.body.style.backgroundColor = "#222";
+  numberEl.style.width = "15rem";
+  numberEl.textContent = "?";
+  guessEl.value = "";
 });
+
+// const promise = new Promise((resolve, reject) => {
+//   const data = true;
+//   if (data) {
+//     resolve("Hello World");
+//   } else {
+//     reject("Something went wrong!");
+//   }
+// });
+
+// promise
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     throw new Error(error);
+//   });
+
+// console.log("Yey");
