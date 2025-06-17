@@ -4,7 +4,7 @@ const getElement = (selection) => {
     return element;
   } else {
     throw new Error(
-      `Please check selected ${selection}, no such element exists!`
+      `Please check selected "${selection}", no such element exists!`
     );
   }
 };
