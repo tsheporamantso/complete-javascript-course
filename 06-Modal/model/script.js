@@ -1,33 +1,43 @@
 "use strict";
-
+import getElement from "./utils/getElement.js";
 /*
  * classList property has couple of methods i.e.(add, remove, toggle, )
  * There are 3 types of events for keyboard( keyup, keydown, keypress )
  */
 
-// Selecting elements
-const btnOpenModal = document.querySelectorAll(".show-modal");
-const modal = document.querySelector(".modal");
-const btnCloseModal = document.querySelector(".close-modal");
-const overlay = document.querySelector(".overlay");
+const showModalBtns = [...document.querySelectorAll(".show-modal")];
+const closeModalBtn = getElement(".close-modal");
+const modal = getElement(".modal");
+const overlay = getElement(".overlay");
 
-const openModal = function () {
-  modal.classList.remove("hidden");
-  overlay.classList.remove("hidden");
+const toggleModal = (element, CSSselector) => {
+  element.classList.toggle(CSSselector);
 };
 
-const closeModal = () => {
-  modal.classList.add("hidden");
-  overlay.classList.add("hidden");
+const closeModal = (element, CSSselector) => {
+  element.classList.add(CSSselector);
 };
 
-console.log(btnOpenModal);
-for (let i = 0; i < btnOpenModal.length; i++) {
-  btnOpenModal[i].addEventListener("click", openModal);
-}
+showModalBtns.map((btn) => {
+  btn.addEventListener("click", () => {
+    toggleModal(modal, "hidden");
+    toggleModal(overlay, "hidden");
+  });
+});
 
-btnCloseModal.addEventListener("click", closeModal);
+closeModalBtn.addEventListener("click", () => {
+  toggleModal(modal, "hidden");
+  toggleModal(overlay, "hidden");
+});
+
+overlay.addEventListener("click", () => {
+  toggleModal(modal, "hidden");
+  toggleModal(overlay, "hidden");
+});
 
 document.addEventListener("keydown", (e) => {
-  e.key === "Escape" ? closeModal() : null;
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal(modal, "hidden");
+    closeModal(overlay, "hidden");
+  }
 });
